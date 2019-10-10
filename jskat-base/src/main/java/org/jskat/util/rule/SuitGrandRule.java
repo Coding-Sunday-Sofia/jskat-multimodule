@@ -72,7 +72,7 @@ public abstract class SuitGrandRule extends SuitGrandRamschRule {
 	public int getGameValueForWonGame(final SkatGameData gameData) {
 		int multiplier = getMultiplier(gameData);
 
-		log.debug("calcSuitResult: after Jacks and Trump: multiplier " + multiplier); //$NON-NLS-1$
+		log.debug("calcSuitResult: after Jacks and Trump: multiplier " + multiplier);
 
 		// TODO add option: Hand game is only counted when game was not lost
 		// if (gameData.isHand() && !gameData.isGameLost()) {
@@ -89,7 +89,7 @@ public abstract class SuitGrandRule extends SuitGrandRamschRule {
 			if (gameData.isHand() && gameData.isSchneiderAnnounced()) {
 				multiplier++;
 			}
-			log.debug("calcSuitResult: Schneider: multiplier " + multiplier); //$NON-NLS-1$
+			log.debug("calcSuitResult: Schneider: multiplier " + multiplier);
 		}
 
 		if (gameData.isSchwarz()) {
@@ -97,7 +97,7 @@ public abstract class SuitGrandRule extends SuitGrandRamschRule {
 			if (gameData.isHand() && gameData.isSchwarzAnnounced()) {
 				multiplier++;
 			}
-			log.debug("calcSuitResult: Schwarz: multiplier " + multiplier); //$NON-NLS-1$
+			log.debug("calcSuitResult: Schwarz: multiplier " + multiplier);
 		}
 
 		if (gameData.isContra()) {
@@ -113,7 +113,7 @@ public abstract class SuitGrandRule extends SuitGrandRamschRule {
 		int gameValue = SkatConstants.getGameBaseValue(gameData.getGameType(),
 				gameData.isHand(), gameData.isOuvert());
 
-		log.debug("gameValue" + gameValue); //$NON-NLS-1$
+		log.debug("gameValue" + gameValue);
 
 		return gameValue * multiplier;
 	}

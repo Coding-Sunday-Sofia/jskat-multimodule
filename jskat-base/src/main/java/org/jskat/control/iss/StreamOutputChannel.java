@@ -43,7 +43,7 @@ class StreamOutputChannel implements OutputChannel {
 	 */
 	@Override
 	public void sendMessage(final String message) {
-		log.debug("ISS <--|    " + message); //$NON-NLS-1$
+		log.debug("ISS <--|    " + message);
 		this.output.println(message);
 	}
 }

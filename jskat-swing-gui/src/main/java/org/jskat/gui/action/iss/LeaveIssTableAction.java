@@ -53,7 +53,7 @@ public class LeaveIssTableAction extends AbstractJSkatAction {
 	 */
 	public LeaveIssTableAction() {
 
-		putValue(Action.NAME, STRINGS.getString("leave_table")); //$NON-NLS-1$
+		putValue(Action.NAME, STRINGS.getString("leave_table"));
 
 		setIcon(Icon.LOG_OUT);
 	}

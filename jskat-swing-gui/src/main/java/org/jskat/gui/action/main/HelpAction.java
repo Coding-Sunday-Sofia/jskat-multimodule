@@ -53,8 +53,8 @@ public class HelpAction extends AbstractJSkatAction {
 	 */
 	public HelpAction() {
 
-		putValue(Action.NAME, STRINGS.getString("help")); //$NON-NLS-1$
-		putValue(Action.SHORT_DESCRIPTION, STRINGS.getString("help_tooltip")); //$NON-NLS-1$
+		putValue(Action.NAME, STRINGS.getString("help"));
+		putValue(Action.SHORT_DESCRIPTION, STRINGS.getString("help_tooltip"));
 
 		setIcon(Icon.HELP);
 	}

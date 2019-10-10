@@ -3,10 +3,14 @@ plugins {
 }
 
 dependencies {
-    compile project(':jskat-base')
-    compile project(':jskat-swing-gui')
+    implementation project(':jskat-base')
+    implementation project(':jskat-swing-gui')
 
-    testCompile 'junit:junit:4.12'
+    implementation('com.google.guava:guava:28.1-jre')
+
+    testImplementation('org.junit.jupiter:junit-jupiter:5.5.2')
+    testImplementation('org.mockito:mockito-core:3.1.0')
+    testImplementation('org.hamcrest:hamcrest-library:2.1')
 }
 
 sourceSets {

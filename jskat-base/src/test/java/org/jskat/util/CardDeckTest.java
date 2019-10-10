@@ -15,48 +15,52 @@
  */
 package org.jskat.util;
 
-import static org.junit.Assert.assertTrue;
-
 import org.jskat.AbstractJSkatTest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test cases for class CardDeck
  */
 public class CardDeckTest extends AbstractJSkatTest {
 
-	/**
-	 * Checks method that returns all cards
-	 */
-	@Test
-	public void getAllCards001() {
+    /**
+     * Checks method that returns all cards
+     */
+    @Test
+    public void getAllCards001() {
 
-		assertTrue(CardDeck.getAllCards().size() == 32);
-	}
+        assertTrue(CardDeck.getAllCards().size() == 32);
+    }
 
-	/**
-	 * Checks setting a card position to null
-	 */
-	@Test
-	public void setNullCard001() {
+    /**
+     * Checks setting a card position to null
+     */
+    @Test
+    public void setNullCard001() {
 
-		CardDeck simCards = new CardDeck();
-		simCards.set(0, null);
+        final CardDeck simCards = new CardDeck();
+        simCards.set(0, null);
 
-		assertTrue(simCards.get(0) == null);
-	}
+        assertTrue(simCards.get(0) == null);
+    }
 
-	@Test(expected = IllegalArgumentException.class)
-	public void addDoubleCard() {
-		CardDeck cards = new CardDeck();
-		cards.remove(Card.CA);
-		cards.add(Card.CJ);
-	}
+    @Test
+    public void addDoubleCard() {
 
-	@Test(expected = IllegalStateException.class)
-	public void addTooMuchCards() {
-		CardDeck cards = new CardDeck(
-				"CJ SJ HJ CK CQ SK C7 C8 S7 H7 D7 DJ CA CT C9 SQ HA HK HQ S8 H8 H9 HT SA ST S9 D8 D9 DT DA DK DQ");
-		cards.add(Card.CJ);
-	}
+        final CardDeck cards = new CardDeck();
+        cards.remove(Card.CA);
+
+        assertThrows(IllegalArgumentException.class, () -> cards.add(Card.CJ));
+    }
+
+    @Test
+    public void addTooMuchCards() {
+
+        final CardDeck cards = new CardDeck();
+
+        assertThrows(IllegalStateException.class, () -> cards.add(Card.CJ));
+    }
 }

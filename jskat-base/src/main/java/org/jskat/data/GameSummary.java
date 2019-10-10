@@ -134,7 +134,7 @@ public class GameSummary {
 				result = tmpSummary;
 				tmpSummary = new GameSummary();
 			} else {
-				throw new RuntimeException("Game summary not valid."); //$NON-NLS-1$
+				throw new RuntimeException("Game summary not valid.");
 			}
 			return result;
 		}
@@ -260,29 +260,29 @@ public class GameSummary {
 
 		private boolean validate() {
 			if (tmpSummary.gameType == null) {
-				LOG.error("game type is null"); //$NON-NLS-1$
+				LOG.error("game type is null");
 				return false;
 			} else if (!GameType.RAMSCH.equals(tmpSummary.gameType) && !GameType.PASSED_IN.equals(tmpSummary.gameType)
 					&& tmpSummary.declarer == null) {
-				LOG.error("declarer is null"); //$NON-NLS-1$
+				LOG.error("declarer is null");
 				return false;
 			} else if (tmpSummary.foreHand == null) {
-				LOG.error("fore hand is null"); //$NON-NLS-1$
+				LOG.error("fore hand is null");
 				return false;
 			} else if (tmpSummary.middleHand == null) {
-				LOG.error("middle hand is null"); //$NON-NLS-1$
+				LOG.error("middle hand is null");
 				return false;
 			} else if (tmpSummary.rearHand == null) {
-				LOG.error("rear hand is null"); //$NON-NLS-1$
+				LOG.error("rear hand is null");
 				return false;
 			} else if (tmpSummary.tricks.size() > 10) {
-				LOG.error("more than 10 tricks"); //$NON-NLS-1$
+				LOG.error("more than 10 tricks");
 				return false;
 			} else if (tmpSummary.gameResult == null) {
-				LOG.error("game result is null"); //$NON-NLS-1$
+				LOG.error("game result is null");
 				return false;
 			} else if (tmpSummary.playerPoints.size() != 3) {
-				LOG.error("missing player points"); //$NON-NLS-1$
+				LOG.error("missing player points");
 				return false;
 			} else if (tmpSummary.gameType == GameType.RAMSCH && tmpSummary.ramschLosers.size() == 0) {
 				LOG.error("missing ramsch looser");
@@ -457,34 +457,34 @@ public class GameSummary {
 
 		StringBuffer result = new StringBuffer();
 
-		result.append("Game summary: ").append(gameType); //$NON-NLS-1$
+		result.append("Game summary: ").append(gameType);
 
 		if (hand.booleanValue()) {
 
-			result.append(" hand"); //$NON-NLS-1$
+			result.append(" hand");
 		}
 
 		if (ouvert.booleanValue()) {
 
-			result.append(" ouvert"); //$NON-NLS-1$
+			result.append(" ouvert");
 		}
 
 		if (schneider.booleanValue()) {
 
-			result.append(" schneider"); //$NON-NLS-1$
+			result.append(" schneider");
 		}
 
 		if (schwarz.booleanValue()) {
 
-			result.append(" schwarz"); //$NON-NLS-1$
+			result.append(" schwarz");
 		}
 
-		result.append(" game value: " + gameResult.getGameValue()); //$NON-NLS-1$
+		result.append(" game value: " + gameResult.getGameValue());
 
-		result.append(" fore hand: " + foreHand); //$NON-NLS-1$
-		result.append(" middle hand: " + middleHand); //$NON-NLS-1$
-		result.append(" rear hand: " + rearHand); //$NON-NLS-1$
-		result.append(" declarer: " + declarer); //$NON-NLS-1$
+		result.append(" fore hand: " + foreHand);
+		result.append(" middle hand: " + middleHand);
+		result.append(" rear hand: " + rearHand);
+		result.append(" declarer: " + declarer);
 
 		return result.toString();
 	}

@@ -13,6 +13,21 @@
  * <p>
  * You should have received a copy of the GNU General Public License
  * along with JSkat.  If not, see <http://www.gnu.org/licenses/>.
+ * <p>
+ * This file is part of JSkat.
+ * <p>
+ * JSkat is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * <p>
+ * JSkat is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * <p>
+ * You should have received a copy of the GNU General Public License
+ * along with JSkat.  If not, see <http://www.gnu.org/licenses/>.
  */
 /**
  * This file is part of JSkat.
@@ -46,7 +61,7 @@ import org.slf4j.LoggerFactory;
  */
 public class SwingHumanPlayer extends AbstractHumanJSkatPlayer {
 
-    private static Logger log = LoggerFactory.getLogger(SwingHumanPlayer.class);
+    private static final Logger log = LoggerFactory.getLogger(SwingHumanPlayer.class);
 
     private Idler idler = new Idler();
 
@@ -100,7 +115,7 @@ public class SwingHumanPlayer extends AbstractHumanJSkatPlayer {
     @Override
     public GameAnnouncement announceGame() {
 
-        log.debug("Waiting for human game announcing..."); //$NON-NLS-1$
+        log.debug("Waiting for human game announcing...");
 
         waitForUserInput();
 
@@ -115,7 +130,7 @@ public class SwingHumanPlayer extends AbstractHumanJSkatPlayer {
     @Override
     public Integer bidMore(final int nextBidValue) {
 
-        log.debug("Waiting for human next bid value..."); //$NON-NLS-1$
+        log.debug("Waiting for human next bid value...");
 
         waitForUserInput();
 
@@ -136,7 +151,7 @@ public class SwingHumanPlayer extends AbstractHumanJSkatPlayer {
     @Override
     public CardList getCardsToDiscard() {
 
-        log.debug("Waiting for human discarding..."); //$NON-NLS-1$
+        log.debug("Waiting for human discarding...");
 
         waitForUserInput();
 
@@ -166,7 +181,7 @@ public class SwingHumanPlayer extends AbstractHumanJSkatPlayer {
     @Override
     public Boolean holdBid(final int currBidValue) {
 
-        log.debug("Waiting for human holding bid..."); //$NON-NLS-1$
+        log.debug("Waiting for human holding bid...");
 
         waitForUserInput();
 
@@ -179,7 +194,7 @@ public class SwingHumanPlayer extends AbstractHumanJSkatPlayer {
     @Override
     public Boolean playGrandHand() {
 
-        log.debug("Waiting for human to decide if playing a grand hand..."); //$NON-NLS-1$
+        log.debug("Waiting for human to decide if playing a grand hand...");
 
         waitForUserInput();
 
@@ -192,7 +207,7 @@ public class SwingHumanPlayer extends AbstractHumanJSkatPlayer {
     @Override
     public Boolean pickUpSkat() {
 
-        log.debug("Waiting for human looking into skat..."); //$NON-NLS-1$
+        log.debug("Waiting for human looking into skat...");
 
         waitForUserInput();
 
@@ -205,7 +220,7 @@ public class SwingHumanPlayer extends AbstractHumanJSkatPlayer {
     @Override
     public Card playCard() {
 
-        log.debug("Waiting for human playing next card..."); //$NON-NLS-1$
+        log.debug("Waiting for human playing next card...");
 
         Card cardToPlay = null;
 
@@ -222,8 +237,8 @@ public class SwingHumanPlayer extends AbstractHumanJSkatPlayer {
     @Override
     public void actionPerformed(final JSkatActionEvent e) {
 
-        Object source = e.getSource();
-        String command = e.getActionCommand();
+        final Object source = e.getSource();
+        final String command = e.getActionCommand();
         boolean interrupt = true;
 
         if (JSkatAction.PASS_BID.toString().equals(command)) {
@@ -252,7 +267,7 @@ public class SwingHumanPlayer extends AbstractHumanJSkatPlayer {
             gameAnnouncementStep = GameAnnouncementStep.LOOKED_INTO_SKAT;
         } else if (JSkatAction.SCHIEBEN.toString().equals(command)) {
             if (source instanceof CardList) {
-                CardList cards = (CardList) source;
+                final CardList cards = (CardList) source;
                 if (cards.size() == 0) {
                     pickUpSkat = false;
                 } else {
@@ -272,7 +287,7 @@ public class SwingHumanPlayer extends AbstractHumanJSkatPlayer {
                     gameAnnouncementStep = GameAnnouncementStep.DISCARDED_SKAT;
                 }
             } else {
-                log.warn("Wrong source for " + command); //$NON-NLS-1$
+                log.warn("Wrong source for " + command);
                 interrupt = false;
             }
         } else if (JSkatAction.PLAY_CARD.toString().equals(command)
@@ -282,7 +297,7 @@ public class SwingHumanPlayer extends AbstractHumanJSkatPlayer {
 
         } else {
 
-            log.warn("Unknown action event occured: " + command + " from " + source); //$NON-NLS-1$ //$NON-NLS-2$
+            log.warn("Unknown action event occured: " + command + " from " + source);
         }
 
         if (interrupt) {
@@ -304,7 +319,7 @@ public class SwingHumanPlayer extends AbstractHumanJSkatPlayer {
             this.idler.start();
             try {
                 this.idler.join();
-            } catch (InterruptedException e) {
+            } catch (final InterruptedException e) {
                 log.warn("wait for user input was interrupted");
             }
         }
@@ -312,7 +327,7 @@ public class SwingHumanPlayer extends AbstractHumanJSkatPlayer {
 
     private boolean isPlayerHasAlreadyPlayed() {
 
-        log.debug("Game announcement step: " + gameAnnouncementStep); //$NON-NLS-1$
+        log.debug("Game announcement step: " + gameAnnouncementStep);
 
         boolean result = false;
 
@@ -339,7 +354,7 @@ public class SwingHumanPlayer extends AbstractHumanJSkatPlayer {
 
         /**
          * Sets the monitoring object
-         * 
+         *
          * @param newMonitor
          *            Monitor
          */
@@ -367,7 +382,7 @@ public class SwingHumanPlayer extends AbstractHumanJSkatPlayer {
                 while (this.doWait) {
                     try {
                         this.monitor.wait();
-                    } catch (InterruptedException e) {
+                    } catch (final InterruptedException e) {
                         stopWaiting();
                     }
                 }
@@ -402,7 +417,7 @@ public class SwingHumanPlayer extends AbstractHumanJSkatPlayer {
     @Override
     public Boolean callContra() {
 
-        log.debug("Waiting for human calling contra..."); //$NON-NLS-1$
+        log.debug("Waiting for human calling contra...");
 
         if (callContra == null) {
             waitForUserInput();
@@ -414,7 +429,7 @@ public class SwingHumanPlayer extends AbstractHumanJSkatPlayer {
     @Override
     public Boolean callRe() {
 
-        log.debug("Waiting for human calling re..."); //$NON-NLS-1$
+        log.debug("Waiting for human calling re...");
 
         if (callRe == null) {
             waitForUserInput();

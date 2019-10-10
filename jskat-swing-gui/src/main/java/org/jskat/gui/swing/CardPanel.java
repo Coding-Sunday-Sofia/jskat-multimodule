@@ -13,6 +13,36 @@
  * <p>
  * You should have received a copy of the GNU General Public License
  * along with JSkat.  If not, see <http://www.gnu.org/licenses/>.
+ * <p>
+ * This file is part of JSkat.
+ * <p>
+ * JSkat is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * <p>
+ * JSkat is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * <p>
+ * You should have received a copy of the GNU General Public License
+ * along with JSkat.  If not, see <http://www.gnu.org/licenses/>.
+ * <p>
+ * This file is part of JSkat.
+ * <p>
+ * JSkat is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * <p>
+ * JSkat is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * <p>
+ * You should have received a copy of the GNU General Public License
+ * along with JSkat.  If not, see <http://www.gnu.org/licenses/>.
  */
 /**
  * This file is part of JSkat.
@@ -32,16 +62,6 @@
  */
 package org.jskat.gui.swing;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.geom.AffineTransform;
-
-import javax.swing.JPanel;
-
 import org.jskat.data.JSkatOptions;
 import org.jskat.gui.img.JSkatGraphicRepository;
 import org.jskat.util.Card;
@@ -50,13 +70,19 @@ import org.jskat.util.GameType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.geom.AffineTransform;
+
 /**
  * Panel for showing cards.
  */
 public class CardPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
-    private static Logger log = LoggerFactory.getLogger(CardPanel.class);
+    private static final Logger log = LoggerFactory.getLogger(CardPanel.class);
 
     protected final JSkatGraphicRepository bitmaps;
 
@@ -84,11 +110,11 @@ public class CardPanel extends JPanel {
      */
     public CardPanel(final Double scaleFactor, final Boolean showBackside) {
 
-        setLayout(LayoutFactory.getMigLayout("fill", "fill", "fill")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        setLayout(LayoutFactory.getMigLayout("fill", "fill", "fill"));
 
         createMouseAdapter();
 
-		this.bitmaps = JSkatGraphicRepository.INSTANCE;
+        this.bitmaps = JSkatGraphicRepository.INSTANCE;
         this.scaleFactor = scaleFactor;
         this.showBackside = showBackside;
 
@@ -98,22 +124,22 @@ public class CardPanel extends JPanel {
     }
 
     private void createMouseAdapter() {
-        MouseAdapter adapter = new MouseAdapter() {
+        final MouseAdapter adapter = new MouseAdapter() {
             @Override
-            public void mouseMoved(MouseEvent e) {
+            public void mouseMoved(final MouseEvent e) {
                 CardPanel.this.mouseXPosition = e.getX();
                 repaintIfNecessary();
             }
 
             @Override
-            public void mouseEntered(MouseEvent e) {
+            public void mouseEntered(final MouseEvent e) {
                 CardPanel.this.mouseXPosition = e.getX();
                 resetActiveCardPosition();
                 repaintIfNecessary();
             }
 
             @Override
-            public void mouseExited(MouseEvent e) {
+            public void mouseExited(final MouseEvent e) {
                 resetMousePositions();
                 repaint();
             }
@@ -175,12 +201,12 @@ public class CardPanel extends JPanel {
      */
     public final void removeCard(final Card cardToRemove) {
 
-		if (cards.contains(cardToRemove)) {
-			cards.remove(cardToRemove);
-		} else if (cards.size() > 0) {
+        if (cards.contains(cardToRemove)) {
+            cards.remove(cardToRemove);
+        } else if (cards.size() > 0) {
             // card panels with hidden cards may contain unknown cards
             // remove the last one
-			cards.remove(cards.size() - 1);
+            cards.remove(cards.size() - 1);
         }
         resetActiveCardPosition();
         repaint();
@@ -217,9 +243,9 @@ public class CardPanel extends JPanel {
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
         // calculate card gap
-        int panelWidth = getWidth();
-        int cardWidth = this.bitmaps.getCardImage(Card.CJ).getWidth(this);
-        int cardGap = calculateCardGap(panelWidth, cardWidth);
+        final int panelWidth = getWidth();
+        final int cardWidth = this.bitmaps.getCardImage(Card.CJ).getWidth(this);
+        final int cardGap = calculateCardGap(panelWidth, cardWidth);
 
         adjustActiveCardPositions(cardWidth, cardGap);
         paintAllCards(cardsToPaint, g2D, cardWidth, cardGap);
@@ -236,7 +262,7 @@ public class CardPanel extends JPanel {
     }
 
     private void paintAllCards(final CardList cardsToPaint,
-            final Graphics2D g2D, final int cardWidth, int cardGap) {
+                               final Graphics2D g2D, final int cardWidth, final int cardGap) {
         int cardNo = 0;
         for (final Card card : cardsToPaint) {
 
@@ -254,7 +280,7 @@ public class CardPanel extends JPanel {
         }
     }
 
-    private void adjustActiveCardPositions(int cardWidth, int cardGap) {
+    private void adjustActiveCardPositions(final int cardWidth, final int cardGap) {
         if (this.mouseXPosition < this.activeCardMinXPosition) {
             this.activeCardMinXPosition = (this.mouseXPosition / cardGap) * cardGap;
         } else if (this.mouseXPosition > this.activeCardMaxXPosition) {

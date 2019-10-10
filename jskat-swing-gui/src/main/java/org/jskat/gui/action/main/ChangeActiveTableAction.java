@@ -52,7 +52,7 @@ public class ChangeActiveTableAction extends AbstractJSkatAction {
 	 */
 	public ChangeActiveTableAction() {
 
-		putValue(Action.NAME, "Change active table"); //$NON-NLS-1$
+		putValue(Action.NAME, "Change active table");
 	}
 
 	/**

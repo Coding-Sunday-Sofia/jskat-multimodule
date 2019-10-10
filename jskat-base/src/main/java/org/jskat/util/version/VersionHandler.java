@@ -22,7 +22,7 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 class VersionHandler extends DefaultHandler {
 
-	String versionString = ""; //$NON-NLS-1$
+	String versionString = "";
 	String workingString = null;
 
 	@Override
@@ -34,7 +34,7 @@ class VersionHandler extends DefaultHandler {
 	@Override
 	public void endElement(String uri, String localName, String qName) {
 
-		if ("Program_Version".equals(localName)) { //$NON-NLS-1$
+		if ("Program_Version".equals(localName)) {
 			versionString = workingString;
 		}
 	}

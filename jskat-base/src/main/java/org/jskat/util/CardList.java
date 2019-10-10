@@ -459,7 +459,7 @@ public class CardList implements Iterable<Card> {
 
 		StringBuffer output = new StringBuffer();
 
-		output.append("{"); //$NON-NLS-1$
+		output.append("{");
 
 		Iterator<Card> iter = cards.iterator();
 		while (iter.hasNext()) {
@@ -470,7 +470,7 @@ public class CardList implements Iterable<Card> {
 				output.append(' ');
 			}
 		}
-		output.append("}"); //$NON-NLS-1$
+		output.append("}");
 
 		return output.toString();
 	}

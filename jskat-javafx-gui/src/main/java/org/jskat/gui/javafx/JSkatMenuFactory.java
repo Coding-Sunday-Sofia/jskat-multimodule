@@ -68,10 +68,10 @@ public final class JSkatMenuFactory {
 
         final Menu skatTableMenu = new Menu(strings.getString("skat_table"));
 
-        final MenuItem playOnLocalTable = new MenuItem(strings.getString("play_on_local_table")); //$NON-NLS-1$
+        final MenuItem playOnLocalTable = new MenuItem(strings.getString("play_on_local_table"));
         playOnLocalTable.setGraphic(JSkatGraphicRepository.INSTANCE.getImageView(Icon.TABLE, IconSize.SMALL));
         playOnLocalTable.setOnAction(actionEvent -> JSkatMaster.INSTANCE.createTable());
-        final MenuItem startSkatSeriesMenuItem = new MenuItem(strings.getString("start_series")); //$NON-NLS-1$
+        final MenuItem startSkatSeriesMenuItem = new MenuItem(strings.getString("start_series"));
         startSkatSeriesMenuItem.setOnAction(actionEvent -> JSkatEventBus.INSTANCE.post(new CreateSkatSeriesCommand()));
         startSkatSeriesMenuItem.setGraphic(JSkatGraphicRepository.INSTANCE.getImageView(Icon.PLAY, IconSize.SMALL));
         final MenuItem replayGameMenuItem = new MenuItem(strings.getString("replay_game"));

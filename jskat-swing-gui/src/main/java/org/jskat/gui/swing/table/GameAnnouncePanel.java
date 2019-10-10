@@ -103,9 +103,9 @@ class GameAnnouncePanel extends JPanel {
 
 	private void initPanel(final ActionMap actions) {
 
-		this.setLayout(LayoutFactory.getMigLayout("fill")); //$NON-NLS-1$
+		this.setLayout(LayoutFactory.getMigLayout("fill"));
 
-		JPanel panel = new JPanel(LayoutFactory.getMigLayout("fill")); //$NON-NLS-1$
+		JPanel panel = new JPanel(LayoutFactory.getMigLayout("fill"));
 
 		this.gameTypeList = new JComboBox();
 		DefaultComboBoxModel model = new DefaultComboBoxModel();
@@ -154,17 +154,17 @@ class GameAnnouncePanel extends JPanel {
 		});
 		this.gameTypeList.setSelectedIndex(-1);
 
-		this.handBox = new JCheckBox(this.strings.getString("hand")); //$NON-NLS-1$
+		this.handBox = new JCheckBox(this.strings.getString("hand"));
 		this.handBox.setEnabled(false);
 		this.ouvertBox = createOuvertBox();
-		this.schneiderBox = new JCheckBox(this.strings.getString("schneider")); //$NON-NLS-1$
+		this.schneiderBox = new JCheckBox(this.strings.getString("schneider"));
 		this.schwarzBox = createSchwarzBox();
 
-		panel.add(this.gameTypeList, "grow, wrap"); //$NON-NLS-1$
-		panel.add(this.handBox, "wrap"); //$NON-NLS-1$
-		panel.add(this.ouvertBox, "wrap"); //$NON-NLS-1$
-		panel.add(this.schneiderBox, "wrap"); //$NON-NLS-1$
-		panel.add(this.schwarzBox, "wrap"); //$NON-NLS-1$
+		panel.add(this.gameTypeList, "grow, wrap");
+		panel.add(this.handBox, "wrap");
+		panel.add(this.ouvertBox, "wrap");
+		panel.add(this.schneiderBox, "wrap");
+		panel.add(this.schwarzBox, "wrap");
 
 		final JButton announceButton = new JButton(
 				actions.get(JSkatAction.ANNOUNCE_GAME));
@@ -231,7 +231,7 @@ class GameAnnouncePanel extends JPanel {
 		});
 		panel.add(announceButton);
 
-		add(panel, "center"); //$NON-NLS-1$
+		add(panel, "center");
 
 		setOpaque(false);
 
@@ -244,7 +244,7 @@ class GameAnnouncePanel extends JPanel {
 	}
 
 	private JCheckBox createOuvertBox() {
-		final JCheckBox result = new JCheckBox(this.strings.getString("ouvert")); //$NON-NLS-1$
+		final JCheckBox result = new JCheckBox(this.strings.getString("ouvert"));
 
 		result.addItemListener(new ItemListener() {
 			@Override
@@ -264,7 +264,7 @@ class GameAnnouncePanel extends JPanel {
 	}
 
 	private JCheckBox createSchwarzBox() {
-		final JCheckBox result = new JCheckBox(this.strings.getString("schwarz")); //$NON-NLS-1$
+		final JCheckBox result = new JCheckBox(this.strings.getString("schwarz"));
 
 		result.addItemListener(new ItemListener() {
 
@@ -299,7 +299,7 @@ class GameAnnouncePanel extends JPanel {
 		@Override
 		public String getValueText(final Object value) {
 
-			String result = " "; //$NON-NLS-1$
+			String result = " ";
 
 			GameType gameType = (GameType) value;
 

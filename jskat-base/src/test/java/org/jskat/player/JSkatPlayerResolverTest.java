@@ -15,22 +15,21 @@
  */
 package org.jskat.player;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import org.jskat.AbstractJSkatTest;
+import org.junit.jupiter.api.Test;
 
 import java.util.Set;
 
-import org.jskat.AbstractJSkatTest;
-import org.junit.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 
 public class JSkatPlayerResolverTest extends AbstractJSkatTest {
 
-	@Test
-	public void testGetAllAIPlayerImplementations() {
+    @Test
+    public void testGetAllAIPlayerImplementations() {
 
-		Set<String> implementations = JSkatPlayerResolver
-				.getAllAIPlayerImplementations();
+        final Set<String> implementations = JSkatPlayerResolver.getAllAIPlayerImplementations();
 
-		assertThat(implementations.size(), is(2));
-	}
+        assertThat(implementations.size(), is(2));
+    }
 }

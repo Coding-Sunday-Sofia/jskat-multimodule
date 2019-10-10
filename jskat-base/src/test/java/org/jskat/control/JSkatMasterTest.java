@@ -15,35 +15,35 @@
  */
 package org.jskat.control;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import org.jskat.AbstractJSkatTest;
 import org.jskat.gui.UnitTestView;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test class for {@link JSkatMaster}
  */
 public class JSkatMasterTest extends AbstractJSkatTest {
 
-	/**
-	 * Tests the creation of tables
-	 */
-	@Test
-	public void createTable() {
-		UnitTestView view = new UnitTestView();
-		JSkatMaster.INSTANCE.setView(view);
+    /**
+     * Tests the creation of tables
+     */
+    @Test
+    public void createTable() {
+        final UnitTestView view = new UnitTestView();
+        JSkatMaster.INSTANCE.setView(view);
 
-		JSkatMaster.INSTANCE.createTable();
+        JSkatMaster.INSTANCE.createTable();
 
-		assertEquals(1, view.tables.size());
-		assertTrue(view.tables.contains("UnitTestTable 1")); //$NON-NLS-1$
+        assertEquals(1, view.tables.size());
+        assertTrue(view.tables.contains("UnitTestTable 1"));
 
-		JSkatMaster.INSTANCE.createTable();
+        JSkatMaster.INSTANCE.createTable();
 
-		assertEquals(2, view.tables.size());
-		assertTrue(view.tables.contains("UnitTestTable 1")); //$NON-NLS-1$
-		assertTrue(view.tables.contains("UnitTestTable 2")); //$NON-NLS-1$
-	}
+        assertEquals(2, view.tables.size());
+        assertTrue(view.tables.contains("UnitTestTable 1"));
+        assertTrue(view.tables.contains("UnitTestTable 2"));
+    }
 }

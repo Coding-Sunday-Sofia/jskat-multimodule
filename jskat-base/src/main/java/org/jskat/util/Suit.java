@@ -97,16 +97,16 @@ public enum Suit {
 
 		if (cardAsString.length() == 2) {
 			// parse only, if the string is two characters long
-			if (cardAsString.startsWith("C")) { //$NON-NLS-1$
+			if (cardAsString.startsWith("C")) {
 
 				suit = CLUBS;
-			} else if (cardAsString.startsWith("S")) { //$NON-NLS-1$
+			} else if (cardAsString.startsWith("S")) {
 
 				suit = SPADES;
-			} else if (cardAsString.startsWith("H")) { //$NON-NLS-1$
+			} else if (cardAsString.startsWith("H")) {
 
 				suit = HEARTS;
-			} else if (cardAsString.startsWith("D")) { //$NON-NLS-1$
+			} else if (cardAsString.startsWith("D")) {
 
 				suit = DIAMONDS;
 			}

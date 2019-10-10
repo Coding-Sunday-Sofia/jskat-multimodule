@@ -53,7 +53,7 @@ public class TalkEnableAction extends AbstractJSkatAction {
 	 */
 	public TalkEnableAction() {
 
-		putValue(Action.NAME, STRINGS.getString("talk")); //$NON-NLS-1$
+		putValue(Action.NAME, STRINGS.getString("talk"));
 
 		setIcon(Icon.CHAT);
 	}

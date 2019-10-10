@@ -15,41 +15,41 @@
  */
 package org.jskat.control.event;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-
 import org.jskat.AbstractJSkatTest;
 import org.jskat.control.event.skatgame.ReEvent;
 import org.jskat.data.SkatGameData;
 import org.jskat.util.Player;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ReEventTest extends AbstractJSkatTest {
 
-	private SkatGameData data;
-	private ReEvent event;
+    private SkatGameData data;
+    private ReEvent event;
 
-	@Before
-	public void setUp() {
-		data = new SkatGameData();
-		event = new ReEvent(Player.FOREHAND);
-	}
+    @BeforeEach
+    public void setUp() {
+        data = new SkatGameData();
+        event = new ReEvent(Player.FOREHAND);
+    }
 
-	@Test
-	public void skatGameDataAfterEvent() {
+    @Test
+    public void skatGameDataAfterEvent() {
 
-		event.processForward(data);
+        event.processForward(data);
 
-		assertThat(data.isRe(), is(true));
-	}
+        assertThat(data.isRe(), is(true));
+    }
 
-	@Test
-	public void skatGameDataBeforeEvent() {
+    @Test
+    public void skatGameDataBeforeEvent() {
 
-		event.processForward(data);
-		event.processBackward(data);
+        event.processForward(data);
+        event.processBackward(data);
 
-		assertThat(data.isRe(), is(false));
-	}
+        assertThat(data.isRe(), is(false));
+    }
 }

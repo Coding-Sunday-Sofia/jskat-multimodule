@@ -134,7 +134,7 @@ public class JSkatApplicationData {
 
 		if (result == null) {
 			throw new IllegalArgumentException(
-					"Unknown table name: " + tableName); //$NON-NLS-1$
+					"Unknown table name: " + tableName);
 		}
 
 		return result;

@@ -109,7 +109,7 @@ class SkatListTableModel extends AbstractTableModel {
 		if (this.displayValues.get(rowIndex).get(columnIndex) != null) {
 			result = this.displayValues.get(rowIndex).get(columnIndex);
 		} else {
-			result = "-"; //$NON-NLS-1$
+			result = "-";
 		}
 
 		return result;
@@ -318,7 +318,7 @@ class SkatListTableModel extends AbstractTableModel {
 			this.playerResults.add(new ArrayList<>());
 			this.displayValues.add(new ArrayList<>());
 		}
-		this.columns.add(this.strings.getString("games")); //$NON-NLS-1$
+		this.columns.add(this.strings.getString("games"));
 		this.displayValues.add(new ArrayList<>());
 	}
 

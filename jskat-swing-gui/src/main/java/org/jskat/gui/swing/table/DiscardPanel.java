@@ -55,9 +55,9 @@ import org.slf4j.LoggerFactory;
 class DiscardPanel extends JPanel {
 
 	private static Logger log = LoggerFactory.getLogger(DiscardPanel.class);
-	private static final String PICK_UP_SKAT_BUTTON = "PICK_UP_SKAT_BUTTON"; //$NON-NLS-1$
+	private static final String PICK_UP_SKAT_BUTTON = "PICK_UP_SKAT_BUTTON";
 
-	private static final String CARD_PANEL = "CARD_PANEL"; //$NON-NLS-1$
+	private static final String CARD_PANEL = "CARD_PANEL";
 
 	private static final long serialVersionUID = 1L;
 
@@ -115,8 +115,8 @@ class DiscardPanel extends JPanel {
 		});
 
 		JPanel lookIntoSkatPanel = new JPanel(
-				LayoutFactory.getMigLayout("fill")); //$NON-NLS-1$
-		lookIntoSkatPanel.add(pickUpSkatButton, "center"); //$NON-NLS-1$
+				LayoutFactory.getMigLayout("fill"));
+		lookIntoSkatPanel.add(pickUpSkatButton, "center");
 		lookIntoSkatPanel.setOpaque(false);
 		add(lookIntoSkatPanel, PICK_UP_SKAT_BUTTON);
 

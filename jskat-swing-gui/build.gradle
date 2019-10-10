@@ -3,8 +3,13 @@ plugins {
 }
 
 dependencies {
-    compile project(':jskat-base')
-    compile 'com.miglayout:miglayout-swing:5.2'
+    implementation project(':jskat-base')
+
+    implementation('com.google.guava:guava:28.1-jre')
+    implementation('com.miglayout:miglayout-swing:5.2')
+    implementation('ch.qos.logback:logback-core:1.2.3')
+    implementation('ch.qos.logback:logback-classic:1.2.3')
+    implementation('org.slf4j:slf4j-api:1.7.28')
 }
 
 javafx {

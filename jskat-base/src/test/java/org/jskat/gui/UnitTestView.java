@@ -66,7 +66,7 @@ public class UnitTestView implements JSkatView {
 	@Override
 	public String getNewTableName(final int localTablesCreated) {
 
-		return "UnitTestTable " + (localTablesCreated + 1); //$NON-NLS-1$
+		return "UnitTestTable " + (localTablesCreated + 1);
 	}
 
 	@Override

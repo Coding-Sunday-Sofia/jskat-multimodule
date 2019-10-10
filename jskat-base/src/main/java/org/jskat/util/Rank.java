@@ -142,28 +142,28 @@ public enum Rank {
 
 		if (cardAsString.length() == 2) {
 			// parse only, iff the string is two characters long
-			if (cardAsString.endsWith("A")) { //$NON-NLS-1$
+			if (cardAsString.endsWith("A")) {
 
 				rank = ACE;
-			} else if (cardAsString.endsWith("T")) { //$NON-NLS-1$
+			} else if (cardAsString.endsWith("T")) {
 
 				rank = TEN;
-			} else if (cardAsString.endsWith("K")) { //$NON-NLS-1$
+			} else if (cardAsString.endsWith("K")) {
 
 				rank = KING;
-			} else if (cardAsString.endsWith("Q")) { //$NON-NLS-1$
+			} else if (cardAsString.endsWith("Q")) {
 
 				rank = QUEEN;
-			} else if (cardAsString.endsWith("J")) { //$NON-NLS-1$
+			} else if (cardAsString.endsWith("J")) {
 
 				rank = JACK;
-			} else if (cardAsString.endsWith("9")) { //$NON-NLS-1$
+			} else if (cardAsString.endsWith("9")) {
 
 				rank = NINE;
-			} else if (cardAsString.endsWith("8")) { //$NON-NLS-1$
+			} else if (cardAsString.endsWith("8")) {
 
 				rank = EIGHT;
-			} else if (cardAsString.endsWith("7")) { //$NON-NLS-1$
+			} else if (cardAsString.endsWith("7")) {
 
 				rank = SEVEN;
 			}

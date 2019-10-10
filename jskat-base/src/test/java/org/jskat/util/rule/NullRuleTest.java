@@ -15,12 +15,6 @@
  */
 package org.jskat.util.rule;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-
 import org.jskat.AbstractJSkatTest;
 import org.jskat.data.GameAnnouncement;
 import org.jskat.data.GameAnnouncement.GameAnnouncementFactory;
@@ -29,247 +23,248 @@ import org.jskat.data.Trick;
 import org.jskat.util.Card;
 import org.jskat.util.GameType;
 import org.jskat.util.Player;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests for NullRule
  */
 public class NullRuleTest extends AbstractJSkatTest {
 
-	private SkatGameData data;
-	private GameAnnouncementFactory factory;
+    private SkatGameData data;
+    private GameAnnouncementFactory factory;
 
-	private static SkatRule nullRules = SkatRuleFactory
-			.getSkatRules(GameType.NULL);
+    private static final SkatRule nullRules = SkatRuleFactory
+            .getSkatRules(GameType.NULL);
 
-	/**
-	 * @see Before
-	 */
-	@Before
-	public void initialize() {
+    @BeforeEach
+    public void setUp() {
 
-		data = new SkatGameData();
-		factory = GameAnnouncement.getFactory();
-		factory.setGameType(GameType.NULL);
-		data.setDeclarer(Player.FOREHAND);
-	}
+        data = new SkatGameData();
+        factory = GameAnnouncement.getFactory();
+        factory.setGameType(GameType.NULL);
+        data.setDeclarer(Player.FOREHAND);
+    }
 
-	private void playWinningTricks() {
-		data.addTrick(new Trick(0, Player.FOREHAND));
-		data.addTrickCard(Card.C7);
-		data.addTrickCard(Card.C8);
-		data.addTrickCard(Card.C9);
-		data.setTrickWinner(0, Player.REARHAND);
-		data.addTrick(new Trick(1, Player.REARHAND));
-		data.addTrickCard(Card.S8);
-		data.addTrickCard(Card.S7);
-		data.addTrickCard(Card.S9);
-		data.setTrickWinner(1, Player.MIDDLEHAND);
-	}
+    private void playWinningTricks() {
+        data.addTrick(new Trick(0, Player.FOREHAND));
+        data.addTrickCard(Card.C7);
+        data.addTrickCard(Card.C8);
+        data.addTrickCard(Card.C9);
+        data.setTrickWinner(0, Player.REARHAND);
+        data.addTrick(new Trick(1, Player.REARHAND));
+        data.addTrickCard(Card.S8);
+        data.addTrickCard(Card.S7);
+        data.addTrickCard(Card.S9);
+        data.setTrickWinner(1, Player.MIDDLEHAND);
+    }
 
-	/**
-	 * Checks @see NullRule#calcGameWon()
-	 */
-	@Test
-	public void calcGameWon() {
+    /**
+     * Checks @see NullRule#calcGameWon()
+     */
+    @Test
+    public void calcGameWon() {
 
-		data.setAnnouncement(factory.getAnnouncement());
-		playWinningTricks();
-		data.calcResult();
-		assertTrue(data.getResult().isWon());
-	}
+        data.setAnnouncement(factory.getAnnouncement());
+        playWinningTricks();
+        data.calcResult();
+        assertTrue(data.getResult().isWon());
+    }
 
-	/**
-	 * Checks @see NullRule#calcGameWon()
-	 */
-	@Test
-	public void calcGameLost() {
+    /**
+     * Checks @see NullRule#calcGameWon()
+     */
+    @Test
+    public void calcGameLost() {
 
-		data.setAnnouncement(factory.getAnnouncement());
-		playWinningTricks();
-		playLoosingTrick();
-		data.calcResult();
-		assertFalse(data.getResult().isWon());
-	}
+        data.setAnnouncement(factory.getAnnouncement());
+        playWinningTricks();
+        playLoosingTrick();
+        data.calcResult();
+        assertFalse(data.getResult().isWon());
+    }
 
-	/**
-	 * Checks @see NullRule#calcGameResult()
-	 */
-	@Test
-	public void calcGameResultGameWon() {
+    /**
+     * Checks @see NullRule#calcGameResult()
+     */
+    @Test
+    public void calcGameResultGameWon() {
 
-		factory.setHand(false);
-		data.setAnnouncement(factory.getAnnouncement());
-		playWinningTricks();
-		data.calcResult();
-		assertEquals(23, data.getResult().getGameValue());
-	}
+        factory.setHand(false);
+        data.setAnnouncement(factory.getAnnouncement());
+        playWinningTricks();
+        data.calcResult();
+        assertThat(data.getResult().getGameValue(), is(23));
+    }
 
-	@Test
-	public void calcGameResultGameWonContra() {
+    @Test
+    public void calcGameResultGameWonContra() {
 
-		factory.setHand(false);
-		data.setAnnouncement(factory.getAnnouncement());
-		data.setContra(true);
-		playWinningTricks();
-		data.calcResult();
-		assertThat(data.getResult().getGameValue(), is(46));
-	}
+        factory.setHand(false);
+        data.setAnnouncement(factory.getAnnouncement());
+        data.setContra(true);
+        playWinningTricks();
+        data.calcResult();
+        assertThat(data.getResult().getGameValue(), is(46));
+    }
 
-	@Test
-	public void calcGameResultGameWonContraRe() {
+    @Test
+    public void calcGameResultGameWonContraRe() {
 
-		factory.setHand(false);
-		data.setAnnouncement(factory.getAnnouncement());
-		data.setContra(true);
-		data.setRe(true);
-		playWinningTricks();
-		data.calcResult();
-		assertThat(data.getResult().getGameValue(), is(92));
-	}
+        factory.setHand(false);
+        data.setAnnouncement(factory.getAnnouncement());
+        data.setContra(true);
+        data.setRe(true);
+        playWinningTricks();
+        data.calcResult();
+        assertThat(data.getResult().getGameValue(), is(92));
+    }
 
-	/**
-	 * Checks @see NullRule#calcGameResult()
-	 */
-	@Test
-	public void calcGameResultGameWonHand() {
+    /**
+     * Checks @see NullRule#calcGameResult()
+     */
+    @Test
+    public void calcGameResultGameWonHand() {
 
-		factory.setHand(true);
-		data.setAnnouncement(factory.getAnnouncement());
-		playWinningTricks();
-		data.calcResult();
-		assertEquals(35, data.getResult().getGameValue());
-	}
+        factory.setHand(true);
+        data.setAnnouncement(factory.getAnnouncement());
+        playWinningTricks();
+        data.calcResult();
+        assertEquals(35, data.getResult().getGameValue());
+    }
 
-	/**
-	 * Checks @see NullRule#calcGameResult()
-	 */
-	@Test
-	public void calcGameResultGameWonOuvert() {
+    /**
+     * Checks @see NullRule#calcGameResult()
+     */
+    @Test
+    public void calcGameResultGameWonOuvert() {
 
-		factory.setHand(false);
-		factory.setOuvert(Boolean.TRUE);
-		data.setAnnouncement(factory.getAnnouncement());
-		playWinningTricks();
-		data.calcResult();
-		assertEquals(46, data.getResult().getGameValue());
-	}
+        factory.setHand(false);
+        factory.setOuvert(Boolean.TRUE);
+        data.setAnnouncement(factory.getAnnouncement());
+        playWinningTricks();
+        data.calcResult();
+        assertEquals(46, data.getResult().getGameValue());
+    }
 
-	/**
-	 * Checks @see NullRule#calcGameResult()
-	 */
-	@Test
-	public void calcGameResultGameWonHandOuvert() {
-		factory.setHand(true);
-		factory.setOuvert(true);
-		data.setAnnouncement(factory.getAnnouncement());
-		playWinningTricks();
-		data.calcResult();
-		assertEquals(59, data.getResult().getGameValue());
-	}
+    /**
+     * Checks @see NullRule#calcGameResult()
+     */
+    @Test
+    public void calcGameResultGameWonHandOuvert() {
+        factory.setHand(true);
+        factory.setOuvert(true);
+        data.setAnnouncement(factory.getAnnouncement());
+        playWinningTricks();
+        data.calcResult();
+        assertEquals(59, data.getResult().getGameValue());
+    }
 
-	/**
-	 * Checks @see NullRule#calcGameResult()
-	 */
-	@Test
-	public void calcGameResultGameLost() {
+    /**
+     * Checks @see NullRule#calcGameResult()
+     */
+    @Test
+    public void calcGameResultGameLost() {
 
-		factory.setHand(false);
-		data.setAnnouncement(factory.getAnnouncement());
-		playWinningTricks();
-		playLoosingTrick();
-		data.calcResult();
-		assertEquals(-46, data.getResult().getGameValue());
-	}
+        factory.setHand(false);
+        data.setAnnouncement(factory.getAnnouncement());
+        playWinningTricks();
+        playLoosingTrick();
+        data.calcResult();
+        assertEquals(-46, data.getResult().getGameValue());
+    }
 
-	@Test
-	public void calcGameResultGameLostContra() {
+    @Test
+    public void calcGameResultGameLostContra() {
 
-		factory.setHand(false);
-		data.setAnnouncement(factory.getAnnouncement());
-		data.setContra(true);
-		playWinningTricks();
-		playLoosingTrick();
-		data.calcResult();
-		assertThat(data.getResult().getGameValue(), is(-92));
-	}
+        factory.setHand(false);
+        data.setAnnouncement(factory.getAnnouncement());
+        data.setContra(true);
+        playWinningTricks();
+        playLoosingTrick();
+        data.calcResult();
+        assertThat(data.getResult().getGameValue(), is(-92));
+    }
 
-	@Test
-	public void calcGameResultGameLostContraRe() {
+    @Test
+    public void calcGameResultGameLostContraRe() {
 
-		factory.setHand(false);
-		data.setAnnouncement(factory.getAnnouncement());
-		data.setContra(true);
-		data.setRe(true);
-		playWinningTricks();
-		playLoosingTrick();
-		data.calcResult();
-		assertThat(data.getResult().getGameValue(), is(-184));
-	}
+        factory.setHand(false);
+        data.setAnnouncement(factory.getAnnouncement());
+        data.setContra(true);
+        data.setRe(true);
+        playWinningTricks();
+        playLoosingTrick();
+        data.calcResult();
+        assertThat(data.getResult().getGameValue(), is(-184));
+    }
 
-	private void playLoosingTrick() {
-		data.addTrick(new Trick(2, Player.MIDDLEHAND));
-		data.addTrickCard(Card.H7);
-		data.addTrickCard(Card.H8);
-		data.addTrickCard(Card.H9);
-		data.setTrickWinner(2, Player.FOREHAND);
-		data.getGameResult().setWon(nullRules.isGameWon(data));
-	}
+    private void playLoosingTrick() {
+        data.addTrick(new Trick(2, Player.MIDDLEHAND));
+        data.addTrickCard(Card.H7);
+        data.addTrickCard(Card.H8);
+        data.addTrickCard(Card.H9);
+        data.setTrickWinner(2, Player.FOREHAND);
+        data.getGameResult().setWon(nullRules.isGameWon(data));
+    }
 
-	/**
-	 * Checks @see NullRule#calcGameResult()
-	 */
-	@Test
-	public void calcGameResultGameLostHand() {
-		factory.setHand(true);
-		data.setAnnouncement(factory.getAnnouncement());
-		playWinningTricks();
-		playLoosingTrick();
-		data.calcResult();
-		assertEquals(-70, nullRules.calcGameResult(data));
-	}
+    /**
+     * Checks @see NullRule#calcGameResult()
+     */
+    @Test
+    public void calcGameResultGameLostHand() {
+        factory.setHand(true);
+        data.setAnnouncement(factory.getAnnouncement());
+        playWinningTricks();
+        playLoosingTrick();
+        data.calcResult();
+        assertEquals(-70, nullRules.calcGameResult(data));
+    }
 
-	/**
-	 * Checks @see NullRule#calcGameResult()
-	 */
-	@Test
-	public void calcGameResultGameLostOuvert() {
+    /**
+     * Checks @see NullRule#calcGameResult()
+     */
+    @Test
+    public void calcGameResultGameLostOuvert() {
 
-		factory.setHand(false);
-		factory.setOuvert(Boolean.TRUE);
-		data.setAnnouncement(factory.getAnnouncement());
-		playWinningTricks();
-		playLoosingTrick();
-		data.calcResult();
-		assertEquals(-92, nullRules.calcGameResult(data));
-	}
+        factory.setHand(false);
+        factory.setOuvert(Boolean.TRUE);
+        data.setAnnouncement(factory.getAnnouncement());
+        playWinningTricks();
+        playLoosingTrick();
+        data.calcResult();
+        assertEquals(-92, nullRules.calcGameResult(data));
+    }
 
-	/**
-	 * Checks @see NullRule#calcGameResult()
-	 */
-	@Test
-	public void calcGameResultGameLostHandOuvert() {
-		factory.setHand(true);
-		factory.setOuvert(true);
-		data.setAnnouncement(factory.getAnnouncement());
-		playWinningTricks();
-		playLoosingTrick();
-		data.calcResult();
-		assertEquals(-118, nullRules.calcGameResult(data));
-	}
+    /**
+     * Checks @see NullRule#calcGameResult()
+     */
+    @Test
+    public void calcGameResultGameLostHandOuvert() {
+        factory.setHand(true);
+        factory.setOuvert(true);
+        data.setAnnouncement(factory.getAnnouncement());
+        playWinningTricks();
+        playLoosingTrick();
+        data.calcResult();
+        assertEquals(-118, nullRules.calcGameResult(data));
+    }
 
-	/**
-	 * Test for overbidding in null games
-	 */
-	@Test
-	public void testOverbid() {
+    /**
+     * Test for overbidding in null games
+     */
+    @Test
+    public void testOverbid() {
 
-		data.addPlayerBid(Player.FOREHAND, 24);
-		factory.setHand(false);
-		data.setAnnouncement(factory.getAnnouncement());
-		playWinningTricks();
-		data.calcResult();
-		assertEquals(-46, data.getResult().getGameValue());
-	}
+        data.addPlayerBid(Player.FOREHAND, 24);
+        factory.setHand(false);
+        data.setAnnouncement(factory.getAnnouncement());
+        playWinningTricks();
+        data.calcResult();
+        assertEquals(-46, data.getResult().getGameValue());
+    }
 }

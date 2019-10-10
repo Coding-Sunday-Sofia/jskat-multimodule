@@ -135,7 +135,7 @@ public class JSkatFX extends Application {
         }
 
         if (JSkatOptions.instance().getBoolean(Option.CHECK_FOR_NEW_VERSION_AT_START_UP)) {
-            JSkatMaster.INSTANCE.checkJSkatVersion(VERSION, VersionChecker.getLatestVersion());
+            JSkatMaster.checkJSkatVersion(VERSION, VersionChecker.getLatestVersion());
         }
     }
 

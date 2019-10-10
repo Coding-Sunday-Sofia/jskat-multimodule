@@ -71,7 +71,7 @@ class InputChannel extends Thread {
 
 					line = InputChannel.this.reader.readLine();
 					
-					log.debug("ISS    |--> " + line); //$NON-NLS-1$
+					log.debug("ISS    |--> " + line);
 					
 					InputChannel.this.messageHandler.addMessage(line);
 
@@ -81,7 +81,7 @@ class InputChannel extends Thread {
 
 				} catch (IOException ioe) {
 
-					log.debug("IO exception --> lost connection to ISS"); //$NON-NLS-1$
+					log.debug("IO exception --> lost connection to ISS");
 					InputChannel.this.done = true;
 				}
 			}
@@ -109,14 +109,14 @@ class InputChannel extends Thread {
 					this.lock.wait();
 				} catch (InterruptedException ie) {
 
-					log.debug("InputChannel interrupted"); //$NON-NLS-1$
+					log.debug("InputChannel interrupted");
 
 					rc.interrupt();
 					this.done = true;
 
 					try {
 
-						log.debug("Closing stream"); //$NON-NLS-1$
+						log.debug("Closing stream");
 
 						stream.close();
 

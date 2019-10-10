@@ -18,10 +18,11 @@ package org.jskat.gui.javafx.dialog.firststeps.model;
 
 import org.jskat.AbstractJSkatTest;
 import org.jskat.data.JSkatOptions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 
 public class FirstStepsDialogModelTest extends AbstractJSkatTest {
     @Test

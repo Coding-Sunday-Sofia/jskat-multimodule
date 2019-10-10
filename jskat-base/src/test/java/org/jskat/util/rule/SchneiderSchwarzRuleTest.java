@@ -15,81 +15,82 @@
  */
 package org.jskat.util.rule;
 
-import static org.junit.Assert.assertTrue;
-
 import org.jskat.AbstractJSkatTest;
 import org.jskat.data.GameAnnouncement;
 import org.jskat.data.GameAnnouncement.GameAnnouncementFactory;
 import org.jskat.data.SkatGameData;
 import org.jskat.util.GameType;
 import org.jskat.util.Player;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests schneider and schwarz rules
  */
 public class SchneiderSchwarzRuleTest extends AbstractJSkatTest {
 
-	private SkatGameData data;
-	private GameAnnouncementFactory factory;
+    private SkatGameData data;
+    private GameAnnouncementFactory factory;
 
-	private static SuitGrandRule clubRules = (SuitGrandRule) SkatRuleFactory
-			.getSkatRules(GameType.CLUBS);
+    private static final SuitGrandRule clubRules = (SuitGrandRule) SkatRuleFactory
+            .getSkatRules(GameType.CLUBS);
 
-	/**
-	 * @see BeforeClass
-	 */
-	@Before
-	public void setUpBeforeClass() {
+    @BeforeEach
+    public void setUp() {
 
-		data = new SkatGameData();
-		factory = GameAnnouncement.getFactory();
-		factory.setGameType(GameType.CLUBS);
-		data.setDeclarer(Player.FOREHAND);
-	}
+        data = new SkatGameData();
+        factory = GameAnnouncement.getFactory();
+        factory.setGameType(GameType.CLUBS);
+        data.setDeclarer(Player.FOREHAND);
+    }
 
-	/**
-	 * Test case 000 for schneider rule
-	 */
-	@Test
-	public void testSchneider000() {
+    /**
+     * Test case 000 for schneider rule
+     */
+    @Test
+    public void testSchneider000() {
 
-		factory.setHand(false);
-		data.setAnnouncement(factory.getAnnouncement());
-		assertTrue(clubRules.isSchneider(data));
-	}
+        factory.setHand(false);
+        data.setAnnouncement(factory.getAnnouncement());
+        assertTrue(clubRules.isSchneider(data));
+    }
 
-	/**
-	 * Test case 000 for schwarz rule
-	 */
-	@Test
-	public void testSchwarz000() {
+    /**
+     * Test case 000 for schwarz rule
+     */
+    @Test
+    public void testSchwarz000() {
 
-		data.setAnnouncement(factory.getAnnouncement());
-		assertTrue(clubRules.isSchwarz(data));
-	}
+        data.setAnnouncement(factory.getAnnouncement());
+        assertTrue(clubRules.isSchwarz(data));
+    }
 
-	/**
-	 * Test for casting null rules into suit/grand rules
-	 */
-	@Test(expected = ClassCastException.class)
-	public void testCast001() {
+    /**
+     * Test for casting null rules into suit/grand rules
+     */
+    @Test
+    public void testCast001() {
 
-		data.setAnnouncement(factory.getAnnouncement());
-		SuitGrandRule nullRules = (SuitGrandRule) SkatRuleFactory
-				.getSkatRules(GameType.NULL);
-	}
+        data.setAnnouncement(factory.getAnnouncement());
 
-	/**
-	 * Test for casting ramsch rules into suit/grand rules
-	 */
-	@Test(expected = ClassCastException.class)
-	public void testCast002() {
+        assertThrows(ClassCastException.class, () -> {
+            final SuitGrandRule skatRules = (SuitGrandRule) SkatRuleFactory.getSkatRules(GameType.NULL);
+        });
+    }
 
-		data.setAnnouncement(factory.getAnnouncement());
-		SuitGrandRule nullRules = (SuitGrandRule) SkatRuleFactory
-				.getSkatRules(GameType.RAMSCH);
-	}
+    /**
+     * Test for casting ramsch rules into suit/grand rules
+     */
+    @Test
+    public void testCast002() {
+
+        data.setAnnouncement(factory.getAnnouncement());
+
+        assertThrows(ClassCastException.class, () -> {
+            final SuitGrandRule skatRules = (SuitGrandRule) SkatRuleFactory.getSkatRules(GameType.RAMSCH);
+        });
+    }
 }

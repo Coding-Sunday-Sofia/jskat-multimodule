@@ -23,24 +23,22 @@ import org.jskat.util.JSkatResourceBundle;
  */
 abstract class AbstractIssConnector implements IssConnector {
 
-	protected static final JSkatResourceBundle strings = JSkatResourceBundle.INSTANCE;
-	protected static final JSkatOptions options = JSkatOptions.instance();
+    protected final static JSkatResourceBundle STRINGS = JSkatResourceBundle.INSTANCE;
+    protected final static JSkatOptions OPTIONS = JSkatOptions.instance();
 
-	protected String loginName;
-	protected String password;
+    protected String loginName;
+    protected String password;
 
-	/**
-	 * Sets login credentials
-	 * 
-	 * @param newLoginName
-	 *            Login name
-	 * @param newPassword
-	 *            Password
-	 */
-	@Override
-	public void setConnectionData(final String newLoginName,
-			final String newPassword) {
-		this.loginName = newLoginName;
-		this.password = newPassword;
-	}
+    /**
+     * Sets login credentials
+     *
+     * @param newLoginName Login name
+     * @param newPassword  Password
+     */
+    @Override
+    public void setConnectionData(final String newLoginName,
+                                  final String newPassword) {
+        this.loginName = newLoginName;
+        this.password = newPassword;
+    }
 }
