@@ -1,12 +1,12 @@
 /**
  * Copyright (C) 2019 Jan Schäfer (jansch@users.sourceforge.net)
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,10 +37,10 @@ public class GameAnnouncementTest extends AbstractJSkatTest {
 
     private static final CardList VALID_DISCARDED_CARDS = new CardList(Card.CJ, Card.SJ);
 
-    private static final Set<GameAnnouncement> validAnnouncements = new HashSet();
+    private final Set<GameAnnouncement> validAnnouncements = new HashSet();
 
     @BeforeEach
-    public static void createAllValidGameAnnouncements() {
+    public void createAllValidGameAnnouncements() {
 
         validAnnouncements.clear();
 
@@ -208,10 +208,10 @@ public class GameAnnouncementTest extends AbstractJSkatTest {
         }
     }
 
-    private static void testAnnouncement(final GameAnnouncement announcement,
-                                         final GameType gameType, final Boolean isHand,
-                                         final Boolean isOuvert, final Boolean isSchneider,
-                                         final Boolean isSchwarz, final CardList discardedCards) {
+    private void testAnnouncement(final GameAnnouncement announcement,
+                                  final GameType gameType, final Boolean isHand,
+                                  final Boolean isOuvert, final Boolean isSchneider,
+                                  final Boolean isSchwarz, final CardList discardedCards) {
 
         if (isValidAnnouncement(announcement)) {
             checkAnnouncement(announcement, gameType, isHand, isOuvert,
@@ -260,8 +260,7 @@ public class GameAnnouncementTest extends AbstractJSkatTest {
         assertEquals(discardedCards, announcement.discardedCards);
     }
 
-    private static boolean isValidAnnouncement(
-            final GameAnnouncement announcement) {
+    private boolean isValidAnnouncement(final GameAnnouncement announcement) {
         return validAnnouncements.contains(announcement);
     }
 

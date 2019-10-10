@@ -1,12 +1,12 @@
 /**
  * Copyright (C) 2019 Jan Schäfer (jansch@users.sourceforge.net)
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,6 +15,7 @@
  */
 package org.jskat.control.event;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.jskat.AbstractJSkatTest;
 import org.jskat.control.event.skatgame.AbstractBidEvent;
 import org.jskat.control.event.skatgame.BidEvent;
@@ -40,6 +41,11 @@ public class BidEventTest extends AbstractJSkatTest {
         event = new BidEvent(Player.FOREHAND, 18);
         event2 = new BidEvent(Player.MIDDLEHAND, 18);
         event3 = new BidEvent(Player.FOREHAND, 20);
+    }
+
+    @Test
+    public void equalsAndHashCode() {
+        EqualsVerifier.forClass(BidEvent.class).verify();
     }
 
     @Test

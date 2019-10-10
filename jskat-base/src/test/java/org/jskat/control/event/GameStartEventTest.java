@@ -13,22 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jskat.control.event.skatgame;
+package org.jskat.control.event;
 
-import org.jskat.util.Player;
+import nl.jqno.equalsverifier.EqualsVerifier;
+import org.jskat.AbstractJSkatTest;
+import org.jskat.control.event.skatgame.GameStartEvent;
+import org.junit.jupiter.api.Test;
 
-public abstract class AbstractPlayerMoveEvent implements SkatGameEvent {
+public class GameStartEventTest extends AbstractJSkatTest {
 
-    public final Player player;
-
-    public AbstractPlayerMoveEvent(final Player player) {
-        this.player = player;
-    }
-
-    protected abstract String getMoveDetails();
-
-    @Override
-    public String toString() {
-        return player + ": " + getMoveDetails();
+    @Test
+    public void equalsAndHashCode() {
+        EqualsVerifier.forClass(GameStartEvent.class).verify();
     }
 }

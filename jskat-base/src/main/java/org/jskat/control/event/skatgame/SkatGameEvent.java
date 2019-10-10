@@ -1,12 +1,12 @@
 /**
  * Copyright (C) 2019 Jan Schäfer (jansch@users.sourceforge.net)
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,19 +21,17 @@ import org.jskat.data.SkatGameData;
  * Interface for events during a Skat game
  */
 public interface SkatGameEvent {
-	/**
-	 * Processes the event forward.
-	 * 
-	 * @param data
-	 *            Game data
-	 */
-	public void processForward(SkatGameData data);
+    /**
+     * Processes the event forward.
+     *
+     * @param data Game data
+     */
+    void processForward(SkatGameData data);
 
-	/**
-	 * Processes the event backward.
-	 * 
-	 * @param data
-	 *            Game data
-	 */
-	public void processBackward(SkatGameData data);
+    /**
+     * Processes the event backward.
+     *
+     * @param data Game data
+     */
+    void processBackward(SkatGameData data);
 }
